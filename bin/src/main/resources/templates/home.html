@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .button {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: #f4511e;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+        #b1 {
+            float: left;
+            width: 50%;
+            background-color: chartreuse ;
+        }
+        .bs-example{
+            margin: 20px;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,5);
+            transition: 0.3s;
+            width: 80%;
+            background-color: lightgoldenrodyellow;
+
+        }
+
+        .card:hover {
+            box-shadow: 0 24px 48px 0 rgba(0,0,0,10);
+        }
+
+        .container1 {
+            padding: 2px 16px;
+        }
+        #g1 {
+            text-blink: auto;
+            color: black;
+        }
+        #t0 {
+            float: left;
+            width: 20%;
+        }
+        #t1 {
+            float: left;
+            width: 50%;
+        }
+        #t2 {
+            float: left;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+<!--<p th:text="${name}"></p>-->
+<p th:text="${email}"></p>
+<div align="center">
+
+    <div class="card" align="center">
+        <div class="container1" align="center">
+            <h1 align="center">Chat App</h1>
+
+            <div class="bs-example">
+                <table class="table table-hover" id="t0">
+<!--                    <tr bgcolor="#5f9ea0">-->
+<!--                        <th>Country</th>-->
+<!--                    </tr>-->
+                    <div th:each="from : ${cidFrom}">
+                        <div th:each="chat : ${cidChat}">
+                            <div th:each="date : ${cidDate}">
+                            <tr>
+                                <td th:text="${from.getValue()}"></td>
+                                <td th:text="${chat.getValue()}"></td>
+                                <td th:text="${date.getValue()}"></td>
+                            </tr>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+<!--                <table class="table table-hover" id="t1">-->
+<!--                    <tr bgcolor="#5f9ea0">-->
+<!--                        <th>Confirmed Cases</th>-->
+<!--                    </tr>-->
+<!--                    <div th:each="cntnt : ${content}">-->
+<!--                        <tr>-->
+<!--                            <td th:text="${cntnt}"></td>-->
+<!--                        </tr>-->
+<!--                    </div>-->
+<!--                </table>-->
+<!--                <table class="table table-hover" id="t2">-->
+<!--&lt;!&ndash;                    <tr bgcolor="#5f9ea0">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th>Changes since last day</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </tr>&ndash;&gt;-->
+<!--                    <div th:each="dt : ${date}">-->
+<!--                        <tr>-->
+<!--                            <td th:text="${dt}"></td>-->
+<!--                        </tr>-->
+<!--                    </div>-->
+<!--                </table>-->
+<br/>
+                <a th:href="'chatBox/'+${email}"><button class="button" id="b1" style="vertical-align:middle"><span id="g1">New Message</span></button></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

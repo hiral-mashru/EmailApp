@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .button {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: #f4511e;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            padding: 10px;
+            width: 200px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+        #b1 {
+            /*float: left;*/
+            /*width: 50%;*/
+            background-color: chartreuse ;
+        }
+        .bs-example{
+            margin: 20px;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,5);
+            transition: 0.3s;
+            width: 80%;
+            background-color: lightgoldenrodyellow;
+
+        }
+
+        .card:hover {
+            box-shadow: 0 24px 48px 0 rgba(0,0,0,10);
+        }
+
+        .container1 {
+            padding: 2px 16px;
+        }
+        #g1 {
+            text-blink: auto;
+            color: black;
+        }
+        #t0 {
+            float: left;
+            width: 20%;
+        }
+        #t1 {
+            float: left;
+            width: 20%;
+        }
+        #t2 {
+            float: left;
+            width: 30%;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+    </style>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <br/>
+    <a href="/chatBox/newMsg"><button class="button" id="b1" style="vertical-align:middle"><span id="g1">New Message</span></button></a>
+    <a href="/chatBox/recievedMsg">Recieved Msgs</a>
+    <a href="/chatBox/sentMsg">Sent Msgs</a>
+    <div th:if="${admin == 1}">
+        <a href="/chatBox/admin">Admin</a>
+    </div>
+    <a href="/">Logout</a>
+</div>
+
+<!--<p th:text="${name}"></p>-->
+<p th:text="'Welcome '+${email}+' :)'"></p>
+<div align="center" id="main">
+
+    <div class="card" align="center">
+        <div class="container1" align="center">
+            <h1 align="center">Mail App</h1>
+        </div>
+    </div>
+    <br/>
+    <span id="s1" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; See More</span>
+    <br/>
+    <div th:if="${page == 1}">
+        <div class="card" align="center">
+            <div class="container1" align="center">
+                <div class="bs-example">
+                    <table class="table table-hover" id="t0">
+                        <div th:if="${setfrom == '[]'}">
+                            <tr><td><p>Data Unavailable</p></td></tr>
+                        </div>
+                        <div th:unless="${setfrom == '[]'}">
+                        <div th:if="${p == 1}">
+                            <tr th:each="from : ${setfrom}">
+                                <td><a th:href="'chatBox/view_to_'+${from}" th:text="${from}"></a></td>
+                            </tr>
+                        </div>
+                        <div th:unless="${p == 1}">
+                            <tr th:each="from : ${setfrom}">
+                                <td><a th:href="'view_to_'+${from}" th:text="${from}"></a></td>
+                            </tr>
+                        </div>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:if="${page == 2}">
+<!--        <p th:text="${email2}"></p>-->
+<!--        <p th:text="${setto}"></p>-->
+        <div class="card" align="center">
+            <div class="container1" align="center">
+                <div class="bs-example">
+                    <table class="table table-hover" id="t1">
+                        <tr th:each="to : ${setto}">
+                            <td><a th:href="'sent_to_'+${to}" th:text="${to}"></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+        document.body.style.backgroundColor = "white";
+    }
+</script>
+</body>
+</html>

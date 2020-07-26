@@ -1,0 +1,11 @@
+server.port= 8090
+spring.mvc.view.prefix=/templates/
+spring.mvc.view.suffix=.html
+spring.datasource.url=jdbc:mysql://localhost:3306/emailapp?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+spring.jpa.show-sql=false
+spring.jpa.hibernate.ddl-auto=update
+
