@@ -46,41 +46,6 @@ public class ChatController {
         return "login";
     }
 
-
-
-//    public HashMap<Integer, String> cidFrom(String name) {
-//        HashMap<Integer, String> cidFrom = new HashMap<>();
-//        Iterable<chatdata> chatdataList = mydataRepository.findAll();
-//        for(chatdata data : chatdataList){
-//            if(data.getTooo().equals(name)){
-//                cidFrom.put(data.getCID(),data.getFromm());
-//            }
-//        }
-//        return cidFrom;
-//    }
-//
-//    public HashMap<Integer, String> cidChat(String name) {
-//        HashMap<Integer, String> cidChat = new HashMap<>();
-//        Iterable<chatdata> chatdataList = mydataRepository.findAll();
-//        for(chatdata data : chatdataList){
-//            if(data.getTooo().equals(name)){
-//                cidChat.put(data.getCID(),data.getChatt());
-//            }
-//        }
-//        return cidChat;
-//    }
-//
-//    public HashMap<Integer, Timestamp> cidDate(String name) {
-//        HashMap<Integer, Timestamp> cidDate = new HashMap<>();
-//        Iterable<chatdata> chatdataList = mydataRepository.findAll();
-//        for(chatdata data : chatdataList){
-//            if(data.getTooo().equals(name)){
-//                cidDate.put(data.getCID(),data.getDate());
-//            }
-//        }
-//        return cidDate;
-//    }
-
     int page;
     @PostMapping(path = "/chatBox")
     public String loginn(HttpSession session, Model model, @RequestParam String EmailID, @RequestParam String Password){
@@ -244,10 +209,6 @@ public class ChatController {
                     model.addAttribute("date",chatlist.getDate());
                 }
             }
-
-//            model.addAttribute("name", Name);
-//            model.addAttribute("list", chatdataList);
-
             return "login";
         } else {
             model.addAttribute("error","Invalid");
